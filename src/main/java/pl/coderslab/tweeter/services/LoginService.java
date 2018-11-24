@@ -30,6 +30,7 @@ public class LoginService
         if (password == null || password.isEmpty()) return null;
         User user = userRepository.findByLoginAndPassword(login, password);
         UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
         userDTO.setLogin(user.getLogin());
         userDTO.setEmail(user.getEmail());
         return userDTO;

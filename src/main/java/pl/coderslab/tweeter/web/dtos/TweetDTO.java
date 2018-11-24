@@ -1,24 +1,24 @@
-package pl.coderslab.tweeter.domain;
+package pl.coderslab.tweeter.web.dtos;
 
-import javax.persistence.*;
+import org.hibernate.validator.constraints.NotEmpty;
+import pl.coderslab.tweeter.domain.User;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity
-@Table(name = "tweets")
-public class Tweet
+public class TweetDTO
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String text;
-
-    @Column(nullable = false, columnDefinition = "DATETIME DEFAULT NOW()")
     private LocalDateTime created;
 
-    @ManyToOne
+    @NotNull(message = "Wpisz treść")
+    @NotEmpty(message = "Wpisz treść")
+    @Size(max = 160, message = "Wpis może zawierać maksymalnie 160 znaków")
+    private String text;
+
     private User user;
 
     public Long getId()
@@ -31,16 +31,6 @@ public class Tweet
         this.id = id;
     }
 
-    public String getText()
-    {
-        return text;
-    }
-
-    public void setText(String text)
-    {
-        this.text = text;
-    }
-
     public LocalDateTime getCreated()
     {
         return created;
@@ -49,6 +39,16 @@ public class Tweet
     public void setCreated(LocalDateTime created)
     {
         this.created = created;
+    }
+
+    public String getText()
+    {
+        return text;
+    }
+
+    public void setText(String text)
+    {
+        this.text = text;
     }
 
     public User getUser()
@@ -64,10 +64,10 @@ public class Tweet
     @Override
     public String toString()
     {
-        return "Tweet{" +
+        return "TweetDTO{" +
                 "id=" + id +
-                ", text='" + text + '\'' +
                 ", created=" + created +
+                ", text='" + text + '\'' +
                 '}';
     }
 
@@ -76,8 +76,8 @@ public class Tweet
     {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Tweet tweet = (Tweet) o;
-        return Objects.equals(id, tweet.id);
+        TweetDTO tweetDTO = (TweetDTO) o;
+        return Objects.equals(id, tweetDTO.id);
     }
 
     @Override

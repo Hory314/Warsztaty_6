@@ -9,22 +9,22 @@ import java.util.Objects;
 
 public class RegistrationFormDTO
 {
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Uzupełnij login")
+    @NotBlank(message = "Uzupełnij login")
     @Size(min = 3, max = 12, message = "Login musi zawierać od {min} do {max} znaków")
     private String login;
 
-    @NotNull
-    @NotBlank
-    @Email
+    @NotNull(message = "Uzupełnij e-mail")
+    @NotBlank(message = "Uzupełnij e-mail")
+    @Email(message = "E-mail jest niepoprawny")
     private String email;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Wpisz hasło")
+    @NotBlank(message = "Wpisz hasło")
     private String password;
 
-    @NotNull
-    @NotBlank
+    @NotNull(message = "Wpisz ponownie hasło")
+    @NotBlank(message = "Wpisz ponownie hasło")
     private String confirmedPassword;
 
     public String getLogin()

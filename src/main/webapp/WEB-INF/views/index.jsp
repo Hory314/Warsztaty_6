@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" content="text/html">
     <title>Tweeter 2.0</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 <div id="main">
@@ -16,7 +17,9 @@
         <%--ALL TWEETS--%>
         <c:forEach items="${tweets}" var="tweet">
             <div class="tweet">
-                <h3>${tweet}</h3>
+                <h5 class="user">${tweet.user.login}</h5>
+                <h5 calss="addDate">${tweet.created}</h5>
+                <div class="content">${tweet.text}</div>
             </div>
         </c:forEach>
     </c:if>
