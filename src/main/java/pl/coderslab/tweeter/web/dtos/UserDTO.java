@@ -1,5 +1,8 @@
 package pl.coderslab.tweeter.web.dtos;
 
+import pl.coderslab.tweeter.domain.Tweet;
+
+import java.util.List;
 import java.util.Objects;
 
 public class UserDTO
@@ -7,6 +10,7 @@ public class UserDTO
     private Long id;
     private String login;
     private String email;
+    private List<Tweet> tweets;
 
     public Long getId()
     {
@@ -36,6 +40,16 @@ public class UserDTO
     public void setEmail(String email)
     {
         this.email = email;
+    }
+
+    public List<Tweet> getTweets()
+    {
+        return tweets;
+    }
+
+    public void setTweets(List<Tweet> tweets)
+    {
+        this.tweets = tweets;
     }
 
     @Override

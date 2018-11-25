@@ -23,8 +23,21 @@ public class User
 
     private Boolean enabled;
 
-    @OneToMany(mappedBy = "user", /*fetch = FetchType.EAGER, */cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "user", /*fetch = FetchType.EAGER, */cascade = CascadeType.REMOVE)
     private List<Tweet> tweets;
+
+    @OneToMany(mappedBy = "tweet", cascade = CascadeType.REMOVE)
+    private List<Comment> comments;
+
+    public List<Comment> getComments()
+    {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments)
+    {
+        this.comments = comments;
+    }
 
     public Long getId()
     {
@@ -74,6 +87,16 @@ public class User
     public void setEnabled(Boolean enabled)
     {
         this.enabled = enabled;
+    }
+
+    public List<Tweet> getTweets()
+    {
+        return tweets;
+    }
+
+    public void setTweets(List<Tweet> tweets)
+    {
+        this.tweets = tweets;
     }
 
     @Override

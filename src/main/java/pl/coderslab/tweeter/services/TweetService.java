@@ -44,6 +44,19 @@ public class TweetService
         return tweetsDTO;
     }
 
+    public TweetDTO getTweet(Long id)
+    {
+        Tweet tweet = tweetRepository.findOne(id);
+        TweetDTO tweetDTO = new TweetDTO();
+        tweetDTO.setUser(tweet.getUser());
+        tweetDTO.setText(tweet.getText());
+        tweetDTO.setCreated(tweet.getCreated());
+        tweetDTO.setId(tweet.getId());
+
+        return tweetDTO;
+    }
+
+
     public void saveTweet(@Valid TweetDTO tweetDTO, HttpSession session)
     {
         Tweet tweet = new Tweet();

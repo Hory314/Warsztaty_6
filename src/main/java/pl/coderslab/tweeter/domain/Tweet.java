@@ -2,6 +2,7 @@ package pl.coderslab.tweeter.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +21,19 @@ public class Tweet
 
     @ManyToOne
     private User user;
+
+    @OneToMany(mappedBy = "tweet", cascade = CascadeType.REMOVE)
+    private List<Comment> comments;
+
+    public List<Comment> getComments()
+    {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments)
+    {
+        this.comments = comments;
+    }
 
     public Long getId()
     {

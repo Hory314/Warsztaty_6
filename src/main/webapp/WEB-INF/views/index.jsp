@@ -17,9 +17,9 @@
         <%--ALL TWEETS--%>
         <c:forEach items="${tweets}" var="tweet">
             <div class="tweet">
-                <h5 class="user">${tweet.user.login}</h5>
-                <h5 calss="addDate">${tweet.created}</h5>
-                <div class="content">${tweet.text}</div>
+                <h5 class="user"><a href="/user/${tweet.user.id}">${tweet.user.login}</a></h5>
+                <h5 class="addDate">${tweet.created}</h5>
+                <div class="content"><p>${tweet.text}</p>(<a href="/tweet/${tweet.id}">Szczegóły</a>)</div>
             </div>
         </c:forEach>
     </c:if>
